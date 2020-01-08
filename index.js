@@ -22,6 +22,7 @@
 
 
      })
+     
     }     
 
 function sendPositionData(){
@@ -42,6 +43,7 @@ function sendPositionData(){
 
 
  })
+ 
 }
 
 function validateForm(){
@@ -52,6 +54,7 @@ function validateForm(){
     let posn = document.playerInputData.position.value;
     let DoI = document.playerInputData.typeOfInjury.value;
     let LoI = document.playerInputData.lengthOfInjury.value;
+    let TP = document.playerInputData.timePeriod.value;
     
     //First Name Validation
     if(fn == "") {
@@ -59,15 +62,13 @@ function validateForm(){
         document.playerInputData.firstName.focus();
         document.getElementById('firstName').style.backgroundColor = "#f54c4c";
         return false;
-     }else{
-        document.getElementById('firstName').style.backgroundColor = "green";
     }
     if( hasNumber.test(fn)) {
          alert( "Error - Name Cannot Contain Numbers" );
          document.playerInputData.firstName.focus() ;
          document.getElementById('firstName').style.backgroundColor = "#f54c4c";
          return false;
-     }
+    }
     if( fn.length < 2 ) {
         alert( "First Name Too Short" );
         document.playerInputData.firstName.focus();
@@ -87,19 +88,19 @@ function validateForm(){
         document.playerInputData.lastName.focus();
         document.getElementById('lastName').style.backgroundColor = "#f54c4c";
         return false;
-     }
+    }
     if( hasNumber.test(ln)) {
          alert( "Error - Last Name cannot contain numbers" );
          document.playerInputData.lastName.focus() ;
          document.getElementById('lastName').style.backgroundColor = "#f54c4c";
          return false;
-     }
+    }
      if( ln.length < 2 ) {
         alert( "Last Name Too Short" );
         document.playerInputData.lastName.focus();
         document.getElementById('lastName').style.backgroundColor = "#f54c4c";
         return false;
-     }
+    }
      if( ln.length > 200 ) {
         alert( "Last Name Too Long" );
         document.playerInputData.lastName.focus();
@@ -113,7 +114,7 @@ function validateForm(){
         document.playerInputData.age.focus();
         document.getElementById('age').style.backgroundColor = "#f54c4c";
         return false;
-     }
+    }
     if(age < 1 || age > 120){
         alert( "Age Must be Greater than 1 and less than 120" );
         document.playerInputData.age.focus();
@@ -122,30 +123,12 @@ function validateForm(){
     }
 
     //Position Validation
-    if(  posn == "" ) {
-        alert( "Please Enter a Position" );
+    if(posn == "Choose a Position" ) {
+        alert("Please Choose a Position");
         document.playerInputData.position.focus();
-        document.getElementById('position').style.backgroundColor = "#f54c4c";
+        //document.getElementById('position').style.backgroundColor = "#f54c4c";
         return false;
-     }
-    if( hasNumber.test(posn)) {
-         alert( "Error - Position cannot contain numbers" );
-         document.playerInputData.position.focus();
-         document.getElementById('position').style.backgroundColor = "#f54c4c";
-         return false;
-     }
-    if( posn.length > 3) {
-        alert( "Please Use Position Abbreviations" );
-        document.playerInputData.position.focus();
-        document.getElementById('position').style.backgroundColor = "#f54c4c";
-        return false;
-     }
-     if( posn.length == 1) {
-        alert( "Position must be longer" );
-        document.playerInputData.position.focus();
-        document.getElementById('position').style.backgroundColor = "#f54c4c";
-        return false;
-     }
+    }
 
      //Description of Injury Validation
      if(DoI == "") {
@@ -153,7 +136,7 @@ function validateForm(){
         document.playerInputData.typeOfInjury.focus();
         document.getElementById('typeOfInjury').style.backgroundColor = "#f54c4c";
         return false;
-     }
+    }
 
      if( hasNumber.test(DoI)) {
         alert( "Error - Description cannot contain numbers" );
@@ -175,13 +158,19 @@ function validateForm(){
         document.playerInputData.lengthOfInjury.focus();
         document.getElementById('lengthOfInjury').style.backgroundColor = "#f54c4c";
         return false;
-     }
+    }
     if(LoI < 1){
         alert( "Length of Injury Must be Greater than 1" );
         document.playerInputData.lengthOfInjury.focus();
         document.getElementById('lengthOfInjury').style.backgroundColor = "#f54c4c";
         return false;
     }
+    if(TP == "Choose a Time Period"){
+        alert( "How long will the player be out for?" );
+        document.playerInputData.timePeriod.focus();
+        return false;
+    }
+    
 
 
      

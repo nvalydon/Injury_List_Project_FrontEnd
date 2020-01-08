@@ -24,14 +24,37 @@
           <input type="number" name="age" id="age" min="1" max="120" placeholder="Age of Player" required>
           <br>
           Position:<br>
-          <input type="text" name="position" id="position" placeholder="Position, for multiple use / to seperate them" required>
+          <select id="position" name="position">
+            <option value="Choose a Position">Choose a Position</option>
+            <option disabled>----Attackers----</option>
+            <option value="CF">CF</option>
+            <option value="ST">ST</option>
+            <option value="LW">LW</option>
+            <option value="RM">RW</option>
+            <option disabled>----Midfielders----</option>
+            <option value="LM">LM</option>
+            <option value="CAM">CAM</option>
+            <option value="CM">CM</option>
+            <option value="CDM">CDM</option>
+            <option disabled>----Defenders----</option>
+            <option value="LWB">LWB</option>
+            <option value="RWB">RWB</option>
+            <option value="RB">RB</option>
+            <option value="LB">LB</option>
+            <option value="CB">CB</option>
+            <option disabled>----Goalkeeper----</option>
+            <option value="GK">GK</option>
+            
+
+          </select>
           <br>
           Description of Injury:<br>
           <input type="text" name="typeOfInjury" id="typeOfInjury" placeholder="Description of Injury" required>
           <br>
           Length of Injury:<br>
           <input type="number" name="lengthOfInjury" id="lengthOfInjury" min="1" placeholder="Length of Injury" required>
-          <select id="timePeriod" name="timePeriod" id="timePeriod">
+          <select id="timePeriod" name="timePeriod" >
+            <option value="Choose a Time Period">How Long?</option>
             <option value="days">Days</option>
             <option value="weeks">Weeks</option>
             <option value="months">Months</option>
