@@ -3,7 +3,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
     <body>
       <div class="topNav">
-        <a class="active" href="index.html">Add a Player</a>
+        <a class="active" href="index.html">Home</a>
         <a href="Table.html">Injury Table</a>
       </div> 
       
@@ -25,13 +25,15 @@
           <br>
           Position:<br>
           <select id="position" name="position">
+
             <option value="Choose a Position">Choose a Position</option>
             <option disabled>----Attackers----</option>
             <option value="CF">CF</option>
             <option value="ST">ST</option>
             <option value="LW">LW</option>
-            <option value="RM">RW</option>
+            <option value="RW">RW</option>
             <option disabled>----Midfielders----</option>
+            <option value="RM">RM</option>
             <option value="LM">LM</option>
             <option value="CAM">CAM</option>
             <option value="CM">CM</option>
@@ -45,11 +47,12 @@
             <option disabled>----Goalkeeper----</option>
             <option value="GK">GK</option>
             
-
           </select>
+          <button onclick="cloneSelect()">Add another Position</button>
           <br>
+
           Description of Injury:<br>
-          <input type="text" name="typeOfInjury" id="typeOfInjury" placeholder="Description of Injury" required>
+          <input type="text" name="typeOfInjury" id="typeOfInjury" placeholder="Description of Injury"required>
           <br>
           Length of Injury:<br>
           <input type="number" name="lengthOfInjury" id="lengthOfInjury" min="1" placeholder="Length of Injury" required>

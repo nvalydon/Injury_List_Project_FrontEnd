@@ -1,4 +1,15 @@
-     function sendPlayerData(){
+// let counter = 0;
+// function cloneSelect(){
+//     let selectedPosn = document.getElementById(this.position.value);
+//     let clone = selectedPosn.cloneNode(true);
+//     var name = selectedPosn.getAttribute("name") + counter++ ;
+//     clone.id = name;
+//     clone.setAttribute("name",name);
+//     document.getElementById("posn").appendChild(clone);
+// }
+
+
+function sendPlayerData(){
         let playerInfo = {
 
             firstName: document.getElementById('firstName').value,
@@ -47,7 +58,7 @@ function sendPositionData(){
 }
 
 function validateForm(){
-    var hasNumber = /\d/;
+    let hasNumber = /\d/;
     let fn = document.playerInputData.firstName.value;
     let ln = document.playerInputData.lastName.value;
     let age = document.playerInputData.age.value;
@@ -81,6 +92,13 @@ function validateForm(){
         document.getElementById('firstName').style.backgroundColor = "#f54c4c";
         return false;
     }
+    // if(fn){
+    //     alert( "Name cannot contain Special Characters" );
+    //     document.playerInputData.firstName.focus();
+    //     document.getElementById('firstName').style.backgroundColor = "#f54c4c";
+    //     return false;
+    // }
+
 
     //Last Name Validations
      if(  ln == "" ) {
@@ -175,10 +193,11 @@ function validateForm(){
 
      
 
-     
-
 
 }
+
+
+
 
 
 
