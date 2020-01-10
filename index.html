@@ -23,8 +23,32 @@
           Age:<br>
           <input type="number" name="age" id="age" min="1" max="120" placeholder="Age of Player" required>
           <br>
-          Position:<br>
-          <select id="position" name="position">
+          Position(s): Please check up to 3<br>
+          
+          Attack:  <input type="checkbox" class="posn" value="1">CF
+          <input type="checkbox" class="posn" value="2">ST
+          <input type="checkbox" class="posn" value="3">RW
+          <input type="checkbox" class="posn" value="4">LW<br>
+
+          Midfield: <input type="checkbox" class="posn" value="5">RM
+          <input type="checkbox" class="posn" value="6">LM
+          <input type="checkbox" class="posn" value="7">CM
+          <input type="checkbox" class="posn" value="8">CAM
+          <input type="checkbox" class="posn"value="9">CDM<br>
+
+          Defense:<input type="checkbox" class="posn" value="10">CB
+          <input type="checkbox" class="posn" value="11">LB
+          <input type="checkbox" class="posn" value="12">RB
+          <input type="checkbox" class="posn" value="13">LWB
+          <input type="checkbox" class="posn" value="14">RWB<br>
+
+          Goalkeeper:<input type="checkbox" class="posn" value="15">GK<br>
+
+      
+        <input type="button" value="sub" onclick="getValue()">
+
+
+          <!-- <select id="position" name="position">
 
             <option value="Choose a Position">Choose a Position</option>
             <option disabled>----Attackers----</option>
@@ -48,7 +72,7 @@
             <option value="GK">GK</option>
             
           </select>
-          <button onclick="cloneSelect()">Add another Position</button>
+          <button onclick="cloneSelect()">Add another Position</button> -->
           <br>
 
           Description of Injury:<br>
@@ -65,7 +89,7 @@
           <br>
 
           <br>
-          <input type="button" value="Submit" onclick="sendPlayerData();sendPositionData();validateForm()" >
+          <input type="button" value="Submit" onclick="sendPlayerData();validateForm()" >
         </form> 
  
     </div>

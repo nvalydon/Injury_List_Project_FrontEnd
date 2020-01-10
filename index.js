@@ -8,18 +8,68 @@
 //     document.getElementById("posn").appendChild(clone);
 // }
 
+function getValue() {
+    let checks = document.getElementsByClassName('posn');
+    arr = [];
+    let posn_id = {};
+    let str = '';
+    for ( i = 0; i < 15; i++) {
+        if ( checks[i].checked === true ) {
+
+            str = checks[i].value;
+            str = parseInt(str,10);
+            let position_data =     
+            {
+                id: str
+            }
+        
+        arr.push(position_data);    
+        }
+                        
+        }
+   
+
+    console.log(arr)
+}
+
 
 function sendPlayerData(){
-        let playerInfo = {
+    let checks = document.getElementsByClassName('posn');
+    arr = [];
+    let posn_id = {};
+    let str = '';
+    for ( i = 0; i < 15; i++) {
+        if ( checks[i].checked === true ) {
+
+            str = checks[i].value;
+            str = parseInt(str,10);
+            let position_data =     
+            {
+                id: str
+            }
+        
+        arr.push(position_data);    
+        }
+                        
+        }
+   
+
+    console.log(arr)
+
+   
+    let playerInfo = {
 
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
             age: document.getElementById('age').value,
             typeOfInjury: document.getElementById('typeOfInjury').value,
             lengthOfInjury: document.getElementById('lengthOfInjury').value,
-            timePeriod: document.getElementById('timePeriod').value
+            timePeriod: document.getElementById('timePeriod').value,
+            positions: arr
+            
     
         };
+        
         JSON.stringify(playerInfo);
         axios.post('http://localhost:8080/player/create', playerInfo)
         .then(function (response){ 
@@ -36,33 +86,40 @@ function sendPlayerData(){
      
     }     
 
-function sendPositionData(){
+// function sendPositionData(){
+//     let checks = document.getElementsByClassName('posn');
+//     let str = '';
+//     for ( i = 0; i < 15; i++) {
+//         if ( checks[i].checked === true ) {
+//             str += checks[i].value + " ";
+//         }
+//     }
 
-    let positionInfo = {
-        position: document.getElementById('position').value
-    };
-    JSON.stringify(positionInfo);
-    axios.post('http://localhost:8080/position/create',positionInfo)
-    .then(function (response){ 
+//     let positionInfo = {
+//         position: str
+//     };
+//     JSON.stringify(positionInfo);
+//     axios.post('http://localhost:8080/position/create',positionInfo)
+//     .then(function (response){ 
 
-        console.log(response);
+//         console.log(response);
     
-    })
-    .catch(function (error){
+//     })
+//     .catch(function (error){
 
-        console.log(error);
+//         console.log(error);
 
 
- })
+//  })
  
-}
+// }
 
 function validateForm(){
     let hasNumber = /\d/;
     let fn = document.playerInputData.firstName.value;
     let ln = document.playerInputData.lastName.value;
     let age = document.playerInputData.age.value;
-    let posn = document.playerInputData.position.value;
+    // let posn = document.playerInputData.position.value;
     let DoI = document.playerInputData.typeOfInjury.value;
     let LoI = document.playerInputData.lengthOfInjury.value;
     let TP = document.playerInputData.timePeriod.value;
@@ -140,14 +197,7 @@ function validateForm(){
         return false;
     }
 
-    //Position Validation
-    if(posn == "Choose a Position" ) {
-        alert("Please Choose a Position");
-        document.playerInputData.position.focus();
-        //document.getElementById('position').style.backgroundColor = "#f54c4c";
-        return false;
-    }
-
+   
      //Description of Injury Validation
      if(DoI == "") {
         alert( "Please Enter a Description of the Injury" );
