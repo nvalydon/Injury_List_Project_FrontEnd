@@ -267,7 +267,13 @@ function addDataToTable(dataToAdd){
         ageEntry.innerHTML = playerData.age;
         row.appendChild(ageEntry);
 
-        //let positionEntry = document.createElement("td");
+        // let positionEntry = document.createElement("td");
+        // for(let i = 0; i<3; i++ ){
+
+        //     playerData.positions.split(",",3);
+        //     positionEntry.innerHTML = playerData.positions + "/"
+        // }
+        // row.append(positionEntry);
 
         let typeOfInjuryEntry = document.createElement("td");
         typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
