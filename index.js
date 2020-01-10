@@ -1,13 +1,3 @@
-// let counter = 0;
-// function cloneSelect(){
-//     let selectedPosn = document.getElementById(this.position.value);
-//     let clone = selectedPosn.cloneNode(true);
-//     var name = selectedPosn.getAttribute("name") + counter++ ;
-//     clone.id = name;
-//     clone.setAttribute("name",name);
-//     document.getElementById("posn").appendChild(clone);
-// }
-
 function getValue() {
     let checks = document.getElementsByClassName('posn');
     arr = [];
@@ -239,12 +229,78 @@ function validateForm(){
         return false;
     }
     
-
-
-     
+ 
 
 
 }
+
+function getPlayerData(){
+
+    pData = axios.get('http://localhost:8080/player/getAll')
+    .then(function (response){ 
+
+        console.log(response);
+        addDataToTable(response.data)
+    
+    })
+    .catch(function (error){
+
+        console.log(error);
+
+
+ });
+}
+const table = document.getElementById("playerTable");
+function addDataToTable(dataToAdd){
+    for(let playerData of dataToAdd){
+
+        let row = document.createElement("tr");
+        let firstNameEntry = document.createElement("td")
+        firstNameEntry.innerHTML = playerData.firstName;
+        row.appendChild(firstNameEntry);
+
+        let lastNameEntry = document.createElement("td");
+        lastNameEntry.innerHTML = playerData.lastName;
+        row.appendChild(lastNameEntry);
+
+        let ageEntry = document.createElement("td");
+        ageEntry.innerHTML = playerData.age;
+        row.appendChild(ageEntry);
+
+        //let positionEntry = document.createElement("td");
+
+        let typeOfInjuryEntry = document.createElement("td");
+        typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
+        row.append(typeOfInjuryEntry);
+
+        let lengthOfInjuryEntry = document.createElement("td");
+        lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " +playerData.timePeriod;
+        row.append(lengthOfInjuryEntry);
+
+        table.appendChild(row);
+        
+
+
+
+
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
 
 
 
