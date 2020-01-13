@@ -234,6 +234,7 @@ function validateForm(){
 
 }
 
+
 function getPlayerData(){
 
     pData = axios.get('http://localhost:8080/player/getAll')
@@ -250,6 +251,34 @@ function getPlayerData(){
 
  });
 }
+
+const date = new Date();
+function addDays(date, days) {
+    const copy = new Date(Number(date))
+    copy.setDate(date.getDate() + days)
+    return copy
+}
+
+// function playerReturn(){
+//     console.log(pData.timePeriod);
+//   if( TP.value == "Days"){
+
+//     let newDate = addDays(date, document.getElementById('lengthOfInjury').value)
+
+//   }else if(TP.value == "Weeks"){
+//     let weekToDay = document.getElementById('lengthOfInjury').value * 7;    
+//     let newDate = addDays(date, weekToDay);
+    
+
+
+//   }else if(TP.value == "Months"){
+
+//     let monthToDay = document.getElementById('lengthOfInjury').value * 28;
+//     let newDate = addDays(date, monthToDay);
+
+//   }
+  
+// }
 const table = document.getElementById("playerTable");
 function addDataToTable(dataToAdd){
     for(let playerData of dataToAdd){
@@ -267,44 +296,64 @@ function addDataToTable(dataToAdd){
         ageEntry.innerHTML = playerData.age;
         row.appendChild(ageEntry);
 
-        // let positionEntry = document.createElement("td");
-        // for(let i = 0; i<3; i++ ){
+        let positionEntry = document.createElement("td");      
+        let result = '';
+        for(let i = 0; i < playerData.positions.length; i++ ){
 
-        //     playerData.positions.split(",",3);
-        //     positionEntry.innerHTML = playerData.positions + "/"
-        // }
-        // row.append(positionEntry);
+            let a = playerData.positions;
+            let b = a[i];
+            
+            result += b.position + ",";
+            
+            
+        }
+        positionEntry.innerHTML = result;
+        row.append(positionEntry);
 
         let typeOfInjuryEntry = document.createElement("td");
         typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
         row.append(typeOfInjuryEntry);
 
         let lengthOfInjuryEntry = document.createElement("td");
-        lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " +playerData.timePeriod;
+        lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " + playerData.timePeriod;
         row.append(lengthOfInjuryEntry);
+
+        let roughReturnDateEntry = document.createElement("td");
+        if( playerData.timePeriod == "Days"){
+            console.log(playerData.timePeriod);
+            return addDays(date, playerData.lengthOfInjury)
+        
+          }else if(playerData.timePeriod == "Weeks"){
+            console.log(playerData.timePeriod);
+            let weekToDay = playerData.lengthOfInjury * 7;    
+            return addDays(date, weekToDay);
+            
+        
+        
+          }else if(playerData.timePeriod == "Months"){
+            console.log(playerData.timePeriod);
+            let monthToDay = playerData.lengthOfInjury * 28;
+            console.log(addDays(date, monthToDay));
+        
+          }
+       //roughReturnDateEntry.innerHTML = playerReturn();
+        
+        //row.append(roughReturnDateEntry);
 
         table.appendChild(row);
         
 
-
-
-
-
-        
     }
 
 
 
 
 
-
-
-
-
-
-
-
 }
+
+
+ 
+ 
 
 
 
