@@ -259,26 +259,6 @@ function addDays(date, days) {
     return copy
 }
 
-// function playerReturn(){
-//     console.log(pData.timePeriod);
-//   if( TP.value == "Days"){
-
-//     let newDate = addDays(date, document.getElementById('lengthOfInjury').value)
-
-//   }else if(TP.value == "Weeks"){
-//     let weekToDay = document.getElementById('lengthOfInjury').value * 7;    
-//     let newDate = addDays(date, weekToDay);
-    
-
-
-//   }else if(TP.value == "Months"){
-
-//     let monthToDay = document.getElementById('lengthOfInjury').value * 28;
-//     let newDate = addDays(date, monthToDay);
-
-//   }
-  
-// }
 const table = document.getElementById("playerTable");
 function addDataToTable(dataToAdd){
     for(let playerData of dataToAdd){
@@ -320,28 +300,34 @@ function addDataToTable(dataToAdd){
 
         let roughReturnDateEntry = document.createElement("td");
         if( playerData.timePeriod == "Days"){
-            console.log(playerData.timePeriod);
-            return addDays(date, playerData.lengthOfInjury)
+            
+            let newDate = addDays(date, playerData.lengthOfInjury);
+            roughReturnDateEntry.innerHTML = newDate;
+            row.append(roughReturnDateEntry);
+
         
           }else if(playerData.timePeriod == "Weeks"){
-            console.log(playerData.timePeriod);
+            
             let weekToDay = playerData.lengthOfInjury * 7;    
-            return addDays(date, weekToDay);
+            let newDate = addDays(date, weekToDay);
+            roughReturnDateEntry.innerHTML = newDate;
+            row.append(roughReturnDateEntry);
             
         
         
           }else if(playerData.timePeriod == "Months"){
-            console.log(playerData.timePeriod);
+            
             let monthToDay = playerData.lengthOfInjury * 28;
-            console.log(addDays(date, monthToDay));
+            let newDate = addDays(date, monthToDay);
+            roughReturnDateEntry.innerHTML = newDate;
+            row.append(roughReturnDateEntry);
         
           }
-       //roughReturnDateEntry.innerHTML = playerReturn();
+       
         
-        //row.append(roughReturnDateEntry);
 
         table.appendChild(row);
-        
+          
 
     }
 
