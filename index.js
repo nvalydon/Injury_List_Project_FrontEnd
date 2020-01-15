@@ -234,6 +234,36 @@ function validateForm(){
 
 }
 
+// function getPlayerDataForUpdate(id){
+
+//      let pData = axios.get('http://localhost:8080/player/get/' + id)
+//     .then(function(response){ 
+//                         document.getElementById("firstName").innerHTML = pData.firstName;
+//         console.log(response);
+        
+//     })
+//     .catch(function (error){
+
+//         console.log(error);
+
+//  });
+// }
+
+// function playerToBeupdated(){
+// console.log("test")
+// // for(key in pData){
+// //             if(pData.hasOwnProperty(key))
+// //             console.log(key)
+// //             $('input[name='+key+']'.valueOf(pData[key]))
+// //         }
+
+// // document.getElementById("firstName").innerHTML = 
+
+
+
+//}
+
+
 
 function getPlayerData(){
 
@@ -262,11 +292,11 @@ function addDays(date, days) {
 
 function deletePlayer(id){
 
-    axios.delete('http://localhost:8080/player/delete/', id )
+    axios.delete('http://localhost:8080/player/delete/' + id)
     .then(function (response){ 
 
         console.log(response);
-        addDataToTable(response.data)
+        
     
     })
     .catch(function (error){
@@ -280,22 +310,27 @@ function deletePlayer(id){
 
 
 }
- 
-const table = document.getElementById("playerTable");
-function addDataToTable(dataToAdd){
-    for(let playerData of dataToAdd){
 
+
+let table = document.getElementById("playerTable");
+function addDataToTable(dataToAdd){
+    
+    for(let playerData of dataToAdd){
+        let playerNum = playerData.id
         let row = document.createElement("tr");
 
         let firstNameEntry = document.createElement("td")
+        firstNameEntry.id = "firstNameCell" + playerNum; 
         firstNameEntry.innerHTML = playerData.firstName;
         row.appendChild(firstNameEntry);
 
         let lastNameEntry = document.createElement("td");
+        lastNameEntry.id = "lastNameCell" + playerNum;
         lastNameEntry.innerHTML = playerData.lastName;
         row.appendChild(lastNameEntry);
 
         let ageEntry = document.createElement("td");
+        ageEntry.id = "ageCell" + playerNum;
         ageEntry.innerHTML = playerData.age;
         row.appendChild(ageEntry);
 
@@ -310,14 +345,19 @@ function addDataToTable(dataToAdd){
             
             
         }
+        positionEntry.id = "positionCell" + playerNum;
         positionEntry.innerHTML = result;
         row.append(positionEntry);
 
         let typeOfInjuryEntry = document.createElement("td");
+        typeOfInjuryEntry.id = "typeOfInjuryCell" + playerNum;
         typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
         row.append(typeOfInjuryEntry);
 
         let lengthOfInjuryEntry = document.createElement("td");
+        lengthOfInjuryEntry.id = "lengthOfInjuryCell" + playerNum;
+        //playerData.timePeriod.id = "timePeriod" + playerNum;
+        //console.log([playerData.timePeriod.id])
         lengthOfInjuryEntry.innerHTML = playerData.lengthOfInjury + " " + playerData.timePeriod;
         row.append(lengthOfInjuryEntry);
 
@@ -325,6 +365,7 @@ function addDataToTable(dataToAdd){
         if( playerData.timePeriod == "Days"){
             
             let newDate = addDays(date, playerData.lengthOfInjury);
+            roughReturnDateEntry.id = "roughReturnDateCell" + playerNum
             roughReturnDateEntry.innerHTML = newDate;
             row.append(roughReturnDateEntry);
 
@@ -332,7 +373,9 @@ function addDataToTable(dataToAdd){
           }else if(playerData.timePeriod == "Weeks"){
             
             let weekToDay = playerData.lengthOfInjury * 7;    
+            
             let newDate = addDays(date, weekToDay);
+            roughReturnDateEntry.id = "roughReturnDateCell" + playerNum
             roughReturnDateEntry.innerHTML = newDate;
             row.append(roughReturnDateEntry);
             
@@ -342,36 +385,34 @@ function addDataToTable(dataToAdd){
             
             let monthToDay = playerData.lengthOfInjury * 28;
             let newDate = addDays(date, monthToDay);
+            roughReturnDateEntry.id = "roughReturnDateCell" + playerNum
             roughReturnDateEntry.innerHTML = newDate;
             row.append(roughReturnDateEntry);
         
           }
        
-        // let deleteData =  document.createElement("td");
-        // let deleteButton = document.createElement("button");
-        // deleteButton.innerHTML = "Delete";
-        // deleteData.innerHTML = deleteButton;
-        // row.append(deleteData);
-
-        // let typeOfInjuryEntry = document.createElement("td");
-        // typeOfInjuryEntry.innerHTML = playerData.typeOfInjury;
-        // row.append(typeOfInjuryEntry);
+          let updateCol = document.createElement("td");
+          let updateButton = "Click Here  ";
+          updateCol.innerHTML = updateButton;
+          row.append(updateCol);
+          updateCol.addEventListener('click', ()=> {let result = confirm("Do you Want to Update this player?")
+          if(result){editRow(playerData.id)
+              
+          }});
+       
+        
 
         let deleteCol = document.createElement("td");
         let deleteButton = "&#128465";
-       // let deleteButton = document.createElement("button")
-       // let text = document.createTextNode("Delete")
-       // deleteButton.appendChild(text)
-        //deleteButton.innerHTML = "Delete"
         deleteCol.innerHTML = deleteButton;
-      //  deleteCol.innerHTML = deleteButton;
         row.append(deleteCol);
-        deleteCol.addEventListener('click', ()=> {let result = confirm("Do you Want to Delete?")
-        if(result){deletePlayer(playerData.id);
-        window.location = window.location;}});
+        deleteCol.addEventListener('click', ()=> {let result = confirm("Do you Want to Delete this player?")
+        if(result){deletePlayer(playerData.id)
+            window.location.reload(true)
+        }});
         
-
-
+        
+       
 
 
         table.appendChild(row);
@@ -379,24 +420,48 @@ function addDataToTable(dataToAdd){
 
     }
 
+}
 
+function editRow(id){
+    
+    //console.log(pData)
+    let table = document.getElementById("playerTable")
+
+    let firstNameUpdate = document.getElementById("firstNameCell" + id)
+    let firstNameVal = firstNameUpdate.innerHTML;
+
+    firstNameUpdate.innerHTML ="<input type=text value='"+firstNameVal+"'>";
+
+    let lastNameUpdate = document.getElementById("lastNameCell" + id)
+    let lastNameVal = lastNameUpdate.innerHTML;
+
+    lastNameUpdate.innerHTML = "<input type=text value='"+lastNameVal+"'>";
+
+    let ageUpdate = document.getElementById("ageCell" + id)
+    let ageVal = ageUpdate.innerHTML;
+
+    ageUpdate.innerHTML = "<input type=text value='"+ageVal+"'>";
+
+    //  let positionUpdate = document.getElementById("positionCell" + id)
+    //  let positionVal = positionUpdate.innerHTML;
+
+    //console.log("positionCell" + id)
+
+    //positionUpdate.innerHTML = "<input type=checkbox value="+positionVal+"'>"
+
+    let lengthOfInjuryUpdate = document.getElementById("lengthOfInjuryCell" + id)
+    let lengthOfInjuryVal = lengthOfInjuryUpdate.innerHTML;
+
+    lengthOfInjuryUpdate.innerHTML = "<input type=text value='"+lengthOfInjuryVal+"'>"
+
+
+
+    let descOfInjuryUpdate = document.getElementById("typeOfInjuryCell" + id)
+    let descOfInjuryVal = descOfInjuryUpdate.innerHTML;
+
+    descOfInjuryUpdate.innerHTML = "<input type=text value='"+descOfInjuryVal+"'>";
 
 
 
 }
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
 

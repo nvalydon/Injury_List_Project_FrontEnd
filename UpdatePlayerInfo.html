@@ -1,19 +1,14 @@
 <html>
     <meta charset="utf-8">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
-    <body>
-      <div class="topNav">
-        <a class="active" href="index.html">Home</a>
-        <a href="Table.html">Injury Table</a>
-      </div> 
-      
+    <body onload="playerToBeupdated()">
+           
         <link rel="stylesheet" href="styles.css">
-        <h1 class="addHeader">Add Player Information</h1>
-        <p>Please fill out the form below with player details, once you are done, click submit</p>
-        
+        <h1 class="addHeader">Update Player Information</h1>
+               
     <div>
         
-        <form name="playerInputData" >
+        <form name="UpdateInputData" >
           First Name:<br>
           <input type="text" name="firstname" id="firstName" placeholder="First Name of Player" required>
           <br>
@@ -66,13 +61,12 @@
           <br>
 
           <br>
-          <input type="button" value="Submit" onclick="validateForm();sendPlayerData()" >
+          <input type="button" value="Submit" onclick="validateForm()">
         </form> 
  
     </div>
         </body>
         <script src="index.js"></script> 
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="jquery-3.4.1.min.js"></script>
 
 </html> 
