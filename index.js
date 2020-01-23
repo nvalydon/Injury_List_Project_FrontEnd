@@ -36,7 +36,7 @@ function sendPlayerData(){
               
          if(validateForm() != false){   
 
-        axios.post('/InjuryApp/player/create', playerInfo)
+        axios.post('/docker-spring-app:8085/player/create', playerInfo)
         .then(function (response){
             
             console.log('data posted!')
@@ -296,7 +296,7 @@ function validateFormEdit(){
 
 function getPlayerData(){
 
-    pData = axios.get('/InjuryApp/player/getAll')
+    pData = axios.get('/docker-spring-app:8085/player/getAll')
     .then(function (response){ 
 
         console.log(response);
@@ -337,7 +337,7 @@ function addDays(date, days) {
 
 function deletePlayer(id){
 
-    axios.delete('/InjuryApp/player/delete/' + id)
+    axios.delete('/docker-spring-app:8085/player/delete/' + id)
     .then(function (response){ 
 
         console.log(response);
@@ -573,7 +573,7 @@ function updatePlayer(id){
 
     if(validateFormEdit() != false){
 
-        axios.put('/InjuryApp/player/update/' + id, playerInfo)
+        axios.put('/docker-spring-app:8085/player/update/' + id, playerInfo)
         .then(function (response){ 
 
             console.log(response);
